@@ -31,7 +31,6 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/C
     <PackageReference Include="GitVersionTask" Version="5.3.7" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="SIL.ReleaseTasks" Version="2.3.4" PrivateAssets="All" />
-    <PackageReference Include="SIL.TestUtilities" Version="8.0.0-beta0166" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>

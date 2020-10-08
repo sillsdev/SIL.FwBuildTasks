@@ -29,6 +29,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void ProperlyImplementedIDisposable_LogsNeitherErrorsNorWarnings()
 		{
 			_task.InspectType(typeof(ProperlyImplementedIDisposable));
@@ -38,6 +41,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void ProperlyImplementedIFWDisposable_LogsNeitherErrorsNorWarnings()
 		{
 			_task.InspectType(typeof(ProperlyImplementedIFWDisposable));
@@ -47,6 +53,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void ProperlyImplementedWindowsForm_LogsNeitherErrorsNorWarnings()
 		{
 			_task.InspectType(typeof(ProperlyImplementedWindowsForm));
@@ -186,6 +195,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void Derived_LogsNeitherErrorsNorWarnings()
 		{
 			_task.InspectType(typeof(Derived));
@@ -213,6 +225,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void DerivedDerived_LogsNeitherErrorsNorWarnings()
 		{
 			_task.InspectType(typeof(DerivedDerived));
@@ -261,6 +276,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void DisposableWithoutMessageDerivedFromEmpty_LogsError()
 		{
 			var type = typeof(DisposableWithoutMessageDerivedFromEmpty);
