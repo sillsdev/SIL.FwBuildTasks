@@ -25,6 +25,7 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/C
     </AppendToReleaseNotesProperty>
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <ChangelogFile>../CHANGELOG.md</ChangelogFile>
+    <IsTool>true</IsTool>
   </PropertyGroup>
 
   <ItemGroup>
