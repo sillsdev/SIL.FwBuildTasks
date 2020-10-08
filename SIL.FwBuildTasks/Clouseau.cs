@@ -108,7 +108,7 @@ namespace FwBuildTasks
 			var instructions = new ILReader(method).ToList();
 			instructions.RemoveAt(instructions.Count - 1); // remove terminal return instruction
 			// All methods end with NOP, RET. On Windows, WriteLIneIf is always followed by NOP, but not on Linux, so remove it on Linux
-			if (IsUnix)
+			if (instructions.Count > 0 && instructions[instructions.Count - 1].opCode == OpCodes.Nop)
 				instructions.RemoveAt(instructions.Count - 1); // remove terminal no-op instruction
 			return instructions;
 		}

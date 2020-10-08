@@ -83,6 +83,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void DisposeBoolDoesNotWriteWarning_LogsError()
 		{
 			var type = typeof(DisposeBoolDoesNotWriteWarning);
@@ -219,6 +222,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void DerivedControlWithoutMessage_LogsError()
 		{
 			var type = typeof(DerivedControlWithoutMessage);
@@ -264,6 +270,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void NoBody_LogsError()
 		{
 			var type = typeof(NoBody);
