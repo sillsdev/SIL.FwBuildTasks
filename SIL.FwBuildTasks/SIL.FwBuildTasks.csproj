@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462</TargetFrameworks>
+    <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
+    <Configurations>Debug;Release</Configurations>
+    <Description>Additional msbuild tasks for FieldWorks</Description>
+    <Company>SIL International</Company>
+    <Authors>SIL International</Authors>
+    <Product>FieldWorks</Product>
+    <Copyright>Copyright © 2010-2020 SIL International</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <OutputPath>../artifacts/$(Configuration)</OutputPath>
+    <PackageOutputPath>../artifacts/</PackageOutputPath>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../SIL.FwBuildTasks.snk</AssemblyOriginatorKeyFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AppendToReleaseNotesProperty><![CDATA[
+See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/CHANGELOG.md]]>
+    </AppendToReleaseNotesProperty>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <ChangelogFile>../CHANGELOG.md</ChangelogFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.3.7" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="SIL.ReleaseTasks" Version="2.3.4" PrivateAssets="All" />
+    <PackageReference Include="SIL.TestUtilities" Version="8.0.0-beta0166" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+</Project>
