@@ -7,7 +7,6 @@ artifacts/
 *.user
 *.ncrunchsolution
 *.ncb
-*.sln
 *.suo
 *.DotSettings
 *.o
