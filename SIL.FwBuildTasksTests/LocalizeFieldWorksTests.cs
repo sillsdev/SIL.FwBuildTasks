@@ -491,6 +491,7 @@ namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 		}
 
 		[Test]
+		[Ignore("Ignored because of HACK: disable string validation so `develop` localizations build")]
 		public void ClearedStringsReported()
 		{
 			const string orig = "original string";
@@ -507,6 +508,7 @@ namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 		/// ENHANCE (Hasso) 2020.04: [TestCase("test {22}", "test {21}")]
 		/// <see cref="Localizer.HasAddedOrRemovedFormatMarkers"/>
 		/// </remarks>
+		[Ignore("Ignored because of HACK: disable string validation so `develop` localizations build")]
 		[TestCase("test {0} {1}", "test {2} {1} {0}")]
 		[TestCase("test {0} {1} {2}", "test {0} {2}")]
 		[TestCase("test {0} {2}", "test {0} {1} {2}")]
@@ -534,24 +536,27 @@ namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 			Assert.True(m_sut.Execute(), m_sut.ErrorMessages);
 		}
 
-		[TestCase(ColorStringsFilenameNoExt, "White,255,255,255", "Weiß,225,123,0", false, "mismatched RGB")]
-		[TestCase(ColorStringsFilenameNoExt, "White,255,255,255", "Weiß,225,255", false, "missing RGB (actually, just B)")]
+		[TestCase(ColorStringsFilenameNoExt, "White,255,255,255", "Weiß,225,123,0", false,
+			"mismatched RGB", Ignore = "Ignored because of HACK: disable string validation so `develop` localizations build")]
+		[TestCase(ColorStringsFilenameNoExt, "White,255,255,255", "Weiß,225,255", false,
+			"missing RGB (actually, just B)", Ignore = "Ignored because of HACK: disable string validation so `develop` localizations build")]
 		[TestCase(ColorStringsFilenameNoExt, "White,255,255,255", "Weiß,255,255,255", true, "matching RGB")]
 		[TestCase(ColorStringsFilenameNoExt, "Light Orange,255,153,0", "Hellorange,255,153,0", true, "matching RGB")]
 		[TestCase(ColorStringsFilenameNoExt, "Custom", "Benutzerdefiniert", true, "Custom; no RGB")]
 		[TestCase("unremarkable", "White,255,255,255", "Weiß,225,123,0", true, "file shouldn't be checked")]
-		public void ColorStringsCorruptedReported(string filename, string original, string localized, bool result, string message)
+		public void ColorStringsCorruptedReported(string filename, string original, string localized, bool expectedResult, string message)
 		{
 			SimpleSetupFDO(LocaleGe);
 			CreateLocalizedResX(m_FdoFolder, filename, LocaleGe, original, localized);
 
-			Assert.AreEqual(result, m_sut.Execute(), message);
+			Assert.That(m_sut.Execute(), Is.EqualTo(expectedResult), message);
 
-			if (!result)
+			if (!expectedResult)
 				Assert.That(m_sut.ErrorMessages, Does.Contain("color"));
 		}
 
 		[Test]
+		[Ignore("Ignored because of HACK: disable string validation so `develop` localizations build")]
 		public void AddedStringsReported()
 		{
 			const string badFilenameBase = "bad";
@@ -567,6 +572,7 @@ namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 		}
 
 		[Test]
+		[Ignore("Ignored because of HACK: disable string validation so `develop` localizations build")]
 		public void MissingStringsReported()
 		{
 			const string badFilenameBase = "bad";
@@ -663,6 +669,7 @@ namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 		}
 
 		[Test]
+		[Ignore("Ignored because of HACK: disable string validation so `develop` localizations build")]
 		public void DuplicateStringsReportedInResx()
 		{
 			const string dupStringId = "ksTest";
