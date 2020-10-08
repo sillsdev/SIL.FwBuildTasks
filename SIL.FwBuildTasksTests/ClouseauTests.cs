@@ -299,6 +299,9 @@ namespace FwBuildTasks
 		}
 
 		[Test]
+#if !DEBUG
+		[Ignore("This test works only in debug builds")]
+#endif
 		public void DisposableWithoutMessageDerivedFromAbstract_LogsError()
 		{
 			var type = typeof(DerivedFromBadImpl);
