@@ -35,4 +35,16 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/C
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="nugetAssets\SIL.FwBuildTasks.props">
+      <Pack>true</Pack>
+      <PackagePath>build/</PackagePath>
+    </None>
+    <None Include="nugetAssets\_._">
+      <Pack>true</Pack>
+      <PackagePath>lib/net462</PackagePath>
+    </None>
+  </ItemGroup>
+
 </Project>
