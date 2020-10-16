@@ -78,24 +78,12 @@ namespace FwBuildTasks
 		public string WorkingDirectory { get; set; }
 
 		#region Task Overrides
-		protected override string ToolName
-		{
-			get
-			{
-				if (Environment.OSVersion.Platform == PlatformID.Unix)
-					return "make";
-				else
-					return "nmake.exe";
-			}
-		}
+		protected override string ToolName => Environment.OSVersion.Platform == PlatformID.Unix ? "make" : "nmake.exe";
 
 		private void CheckToolPath()
 		{
-			string path = Environment.GetEnvironmentVariable("PATH");
-			string vcInstallDir = Environment.GetEnvironmentVariable("VCINSTALLDIR");
-			//Console.WriteLine("DEBUG Make Task: PATH='{0}'", path);
-			string makePath = ToolPath == null ? String.Empty : ToolPath.Trim();
-			if (!String.IsNullOrEmpty(makePath) && File.Exists(Path.Combine(makePath, ToolName)))
+			var makePath = ToolPath == null ? string.Empty : ToolPath.Trim();
+			if (!string.IsNullOrEmpty(makePath) && File.Exists(Path.Combine(makePath, ToolName)))
 			{
 				ToolPath = makePath;
 				return;
@@ -106,7 +94,9 @@ namespace FwBuildTasks
 				if (File.Exists(Path.Combine(ToolPath, ToolName)))
 					return;
 			}
-			string[] splitPath = path.Split(new char[] {Path.PathSeparator});
+			var path = Environment.GetEnvironmentVariable("PATH");
+			//Console.WriteLine("DEBUG Make Task: PATH='{0}'", path);
+			var splitPath = path.Split(new char[] {Path.PathSeparator});
 			foreach (var dir in splitPath)
 			{
 				if (File.Exists(Path.Combine(dir, ToolName)))
@@ -116,6 +106,7 @@ namespace FwBuildTasks
 				}
 			}
 			// Fall Back to the install directory
+			var vcInstallDir = Environment.GetEnvironmentVariable("VCINSTALLDIR");
 			ToolPath = Path.Combine(vcInstallDir, "bin");
 		}
 
@@ -134,11 +125,9 @@ namespace FwBuildTasks
 				bldr.AppendSwitchIfNotNull("BUILD_TYPE=", BuildType);
 				bldr.AppendSwitchIfNotNull("BUILD_ROOT=", BuildRoot);
 				bldr.AppendSwitchIfNotNull("BUILD_ARCH=", BuildArch);
-				bldr.AppendSwitchIfNotNull("-C", Path.GetDirectoryName(Makefile));
-				if (String.IsNullOrEmpty(Target))
-					bldr.AppendSwitch("all");
-				else
-					bldr.AppendSwitch(Target);
+				bldr.AppendSwitchIfNotNull("-C ", WorkingDirectory);
+				bldr.AppendSwitchIfNotNull("-f ", Makefile);
+				bldr.AppendSwitch(string.IsNullOrEmpty(Target) ? "all" : Target);
 			}
 			else
 			{
@@ -148,7 +137,7 @@ namespace FwBuildTasks
 				bldr.AppendSwitchIfNotNull("BUILD_ROOT=", BuildRoot);
 				bldr.AppendSwitchIfNotNull("BUILD_ARCH=", BuildArch);
 				bldr.AppendSwitchIfNotNull("/f ", Makefile);
-				if (!String.IsNullOrEmpty(Target))
+				if (!string.IsNullOrEmpty(Target))
 					bldr.AppendSwitch(Target);
 			}
 			return bldr.ToString();
@@ -159,7 +148,7 @@ namespace FwBuildTasks
 		/// </summary>
 		protected override string GetWorkingDirectory()
 		{
-			return String.IsNullOrEmpty(WorkingDirectory) ? base.GetWorkingDirectory() : WorkingDirectory;
+			return string.IsNullOrEmpty(WorkingDirectory) ? base.GetWorkingDirectory() : WorkingDirectory;
 		}
 		#endregion
 	}
