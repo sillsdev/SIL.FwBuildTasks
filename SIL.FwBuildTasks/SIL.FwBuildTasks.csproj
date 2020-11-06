@@ -41,6 +41,10 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/C
       <Pack>true</Pack>
       <PackagePath>build/</PackagePath>
     </None>
+    <None Include="nugetAssets\SIL.FwBuildTasks.props">
+      <Pack>true</Pack>
+      <PackagePath>buildMultiTargeting/</PackagePath>
+    </None>
     <None Include="nugetAssets\_._">
       <Pack>true</Pack>
       <PackagePath>lib/net462</PackagePath>
