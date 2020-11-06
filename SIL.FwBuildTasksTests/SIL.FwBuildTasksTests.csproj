@@ -21,7 +21,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <AppendToReleaseNotesProperty><![CDATA[
-See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/master/CHANGELOG.md]]>
+See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHANGELOG.md]]>
     </AppendToReleaseNotesProperty>
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <ChangelogFile>../CHANGELOG.md</ChangelogFile>
