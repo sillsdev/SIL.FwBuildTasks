@@ -10,11 +10,17 @@ namespace SIL.FieldWorks.Build.Tasks
 {
 	public class GenerateFwTargets : Task
 	{
+		[Required]
+		public string TimeoutValuesFilePath { get; set; }
+
+		[Required]
+		public string NUnitConsolePath { get; set; }
+
 		public override bool Execute()
 		{
 			try
 			{
-				var gen = new CollectTargets(Log);
+				var gen = new CollectTargets(Log, TimeoutValuesFilePath, NUnitConsolePath);
 				gen.Generate();
 				return true;
 			}
