@@ -36,7 +36,10 @@ namespace SIL.FieldWorks.Build.Tasks
 		private XmlNamespaceManager m_namespaceMgr;
 		private Dictionary<string, int> m_timeoutMap;
 
-		public CollectTargets(TaskLoggingHelper log)
+		private readonly string m_TimeoutValuesFilePath;
+		private readonly string m_NUnitConsolePath;
+
+		public CollectTargets(TaskLoggingHelper log, string timeoutValuesFilePath, string nUnitConsolePath)
 		{
 			Log = log;
 			// Get the parent directory of the running program.  We assume that
@@ -52,6 +55,8 @@ namespace SIL.FieldWorks.Build.Tasks
 				}
 			}
 			m_fwroot = fwrt;
+			m_TimeoutValuesFilePath = timeoutValuesFilePath;
+			m_NUnitConsolePath = nUnitConsolePath;
 		}
 
 		/// <summary>
@@ -353,9 +358,9 @@ namespace SIL.FieldWorks.Build.Tasks
 						{
 							// <NUnit> task
 							writer.WriteLine($"\t\t<Message Text=\"Running unit tests for {project}\" />");
-							writer.WriteLine("\t\t<NUnit Condition=\"'$(action)'=='test'\"");
+							writer.WriteLine("\t\t<NUnit3 Condition=\"'$(action)'=='test'\"");
 							writer.WriteLine($"\t\t\tAssemblies=\"$(dir-outputBase)/{project}.dll\"");
-							writer.WriteLine("\t\t\tToolPath=\"$(fwrt)/Bin/NUnit/bin\"");
+							writer.WriteLine($"\t\t\tToolPath=\"{m_NUnitConsolePath}\"");
 							writer.WriteLine("\t\t\tWorkingDirectory=\"$(dir-outputBase)\"");
 							writer.WriteLine($"\t\t\tOutputXmlFile=\"$(dir-outputBase)/{project}.dll-nunit-output.xml\"");
 							writer.WriteLine("\t\t\tForce32Bit=\"$(useNUnit-x86)\"");
@@ -367,7 +372,7 @@ namespace SIL.FieldWorks.Build.Tasks
 							writer.WriteLine("\t\t\tFudgeFactor=\"$(timeoutFudgeFactor)\"");
 							writer.WriteLine($"\t\t\tTimeout=\"{TimeoutForProject(project)}\">");
 							writer.WriteLine("\t\t\t<Output TaskParameter=\"FailedSuites\" ItemName=\"FailedSuites\"/>");
-							writer.WriteLine("\t\t</NUnit>");
+							writer.WriteLine("\t\t</NUnit3>");
 							writer.WriteLine($"\t\t<Message Text=\"Finished building {project}.\" Condition=\"'$(action)'!='test'\"/>");
 							writer.WriteLine($"\t\t<Message Text=\"Finished building {project} and running tests.\" Condition=\"'$(action)'=='test'\"/>");
 							// Generate dotCover task
@@ -429,30 +434,26 @@ namespace SIL.FieldWorks.Build.Tasks
 			}
 		}
 
-		private static void GenerateDotCoverTask(StreamWriter writer, IEnumerable<string> projects, string outputXml)
+		private void GenerateDotCoverTask(TextWriter writer, IEnumerable<string> projects, string outputXml)
 		{
 			var assemblyList = projects.Aggregate("", (current, proj) => current + $"$(dir-outputBase)/{proj}.dll;");
 			writer.WriteLine($"\t\t<Message Text=\"Running coverage analysis for {string.Join(", ", projects)}\" Condition=\"'$(action)'=='cover'\"/>");
-			writer.WriteLine("\t\t<GenerateTestCoverageReport Condition=\"'$(action)'=='cover'\"");
+			writer.WriteLine( "\t\t<GenerateTestCoverageReport Condition=\"'$(action)'=='cover'\"");
 			writer.WriteLine($"\t\t\tAssemblies=\"{assemblyList}\"");
-			writer.WriteLine("\t\t\tNUnitConsoleExe=\"$(fwrt)/Bin/NUnit/bin/nunit-console-x86.exe\"");
-			writer.WriteLine("\t\t\tDotCoverExe=\"$(DOTCOVER_HOME)/dotcover.exe\"");
-			writer.WriteLine("\t\t\tWorkingDirectory=\"$(dir-outputBase)\"");
+			writer.WriteLine( $"\t\t\tNUnitConsoleExe=\"{m_NUnitConsolePath}nunit3-console.exe\"");
+			writer.WriteLine( "\t\t\tDotCoverExe=\"$(DOTCOVER_HOME)/dotcover.exe\"");
+			writer.WriteLine( "\t\t\tWorkingDirectory=\"$(dir-outputBase)\"");
 			writer.WriteLine($"\t\t\tOutputXmlFile=\"$(dir-outputBase)/{outputXml}\"/>");
 		}
 
 		/// <summary>
 		/// Return the timeout for running the tests in the given test project.
 		/// </summary>
-		/// <remarks>
-		/// The timings for projects are now found in the fw/Build/TestTimeoutValues.xml file and can be changed there
-		/// without having to rebuild the FwBuildTasks dll.  Values in XML are in seconds, which we convert to milliseconds here.
-		/// </remarks>
-		int TimeoutForProject(string project)
+		private int TimeoutForProject(string project)
 		{
 			if (m_timeoutMap == null)
 			{
-				var timeoutDocument = XDocument.Load(Path.Combine(m_fwroot, "Build", "TestTimeoutValues.xml"));
+				var timeoutDocument = XDocument.Load(m_TimeoutValuesFilePath);
 				m_timeoutMap = new Dictionary<string, int>();
 				var testTimeoutValuesElement = timeoutDocument.Root;
 				m_timeoutMap["default"] = int.Parse(testTimeoutValuesElement.Attribute("defaultTimeLimit").Value);
