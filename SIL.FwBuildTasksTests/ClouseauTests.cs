@@ -10,9 +10,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using FwBuildTasks;
 using NUnit.Framework;
 
-namespace FwBuildTasks
+namespace SIL.FieldWorks.Build.Tasks.FwBuildTasksTests
 {
 	[TestFixture]
 	public class ClouseauTests
