@@ -386,37 +386,35 @@ namespace SIL.FieldWorks.Build.Tasks
 						writer.WriteLine();
 					}
 					writer.Write("\t<Target Name=\"allCsharp\" DependsOnTargets=\"");
-					var first = true;
+					var targets = new StringBuilder();
 					foreach (var project in m_mapProjFile.Keys)
 					{
 						if (project == "FxtExe")
-						{
 							continue;
-						}
-						if (first)
-							writer.Write(project);
-						else
-							writer.Write(";{0}", project.Replace(".", string.Empty));
-						first = false;
+
+						if (targets.Length > 0)
+							targets.Append(";");
+						targets.Append(project.Replace(".", string.Empty));
 					}
+					writer.Write(targets);
 					writer.WriteLine("\"/>");
 					writer.WriteLine();
 					writer.Write("\t<Target Name=\"allCsharpNoTests\" DependsOnTargets=\"");
-					first = true;
+					targets.Clear();
 					foreach (var project in m_mapProjFile.Keys)
 					{
 						if (project == "FxtExe" ||
-							project.EndsWith("Tests") || // These are tests.
+							project.EndsWith("Tests") ||  // These are tests.
 							project == "ProjectUnpacker") // This is only used in tests.
 						{
 							continue;
 						}
-						if (first)
-							writer.Write(project);
-						else
-							writer.Write(";{0}", project.Replace(".", string.Empty));
-						first = false;
+
+						if (targets.Length > 0)
+							targets.Append(";");
+						targets.Append(project.Replace(".", string.Empty));
 					}
+					writer.Write(targets);
 					writer.WriteLine("\"/>");
 
 					writer.WriteLine("</Project>");
