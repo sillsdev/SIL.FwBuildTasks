@@ -45,6 +45,11 @@ namespace FwBuildTasks
 		public string Target { get; set; }
 
 		/// <summary>
+		/// Gets or sets additional macros passed to make
+		/// </summary>
+		public string Macros { get; set; }
+
+		/// <summary>
 		/// Gets the build "type" (d, r, p, b).
 		/// This can be derived from the build configuration.
 		/// </summary>
@@ -125,6 +130,11 @@ namespace FwBuildTasks
 				bldr.AppendSwitchIfNotNull("BUILD_TYPE=", BuildType);
 				bldr.AppendSwitchIfNotNull("BUILD_ROOT=", BuildRoot);
 				bldr.AppendSwitchIfNotNull("BUILD_ARCH=", BuildArch);
+				if (!string.IsNullOrEmpty(Macros))
+				{
+					bldr.AppendTextUnquoted(" ");
+					bldr.AppendTextUnquoted(Macros);
+				}
 				bldr.AppendSwitchIfNotNull("-C ", WorkingDirectory);
 				bldr.AppendSwitchIfNotNull("-f ", Makefile);
 				bldr.AppendSwitch(string.IsNullOrEmpty(Target) ? "all" : Target);
@@ -136,6 +146,11 @@ namespace FwBuildTasks
 				bldr.AppendSwitchIfNotNull("BUILD_TYPE=", BuildType);
 				bldr.AppendSwitchIfNotNull("BUILD_ROOT=", BuildRoot);
 				bldr.AppendSwitchIfNotNull("BUILD_ARCH=", BuildArch);
+				if (!string.IsNullOrEmpty(Macros))
+				{
+					bldr.AppendTextUnquoted(" ");
+					bldr.AppendTextUnquoted(Macros);
+				}
 				bldr.AppendSwitchIfNotNull("/f ", Makefile);
 				if (!string.IsNullOrEmpty(Target))
 					bldr.AppendSwitch(Target);
