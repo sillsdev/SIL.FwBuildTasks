@@ -79,7 +79,7 @@ namespace SIL.FieldWorks.Build.Tasks
 				Macros = "A=B C=D"
 			};
 
-			Assert.That(sut.GetCommandLine(), Is.EqualTo("BUILD_TYPE=d A=B C=D -f MyMakefile"));
+			Assert.That(sut.GetCommandLine(), Is.EqualTo("BUILD_TYPE=d A=B C=D -f MyMakefile all"));
 		}
 
 	}

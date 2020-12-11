@@ -1,19 +1,7 @@
-// ---------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007, SIL International. All Rights Reserved.
-// <copyright from='2007' to='2007' company='SIL International'>
-//		Copyright (c) 2007, SIL International. All Rights Reserved.
-//
-//		Distributable under the terms of either the Common Public License or the
-//		GNU Lesser General Public License, as specified in the LICENSING.txt file.
-// </copyright>
-#endregion
-//
-// File: RegFreeTask.cs
-// Responsibility: TE Team
-//
-// <remarks>
-// </remarks>
-// ---------------------------------------------------------------------------------------------
+// Copyright (c) 2007-2020 SIL International
+// This software is licensed under the LGPL, version 2.1 or later
+// (http://www.gnu.org/licenses/lgpl-2.1.html)
+
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -36,6 +24,9 @@ namespace SIL.FieldWorks.Build.Tasks
 	/// ----------------------------------------------------------------------------------------
 	public class RegFree: Task
 	{
+		internal const string x64 = nameof(x64);
+		internal const string x86 = nameof(x86);
+
 		/// ------------------------------------------------------------------------------------
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RegFree"/> class.
@@ -71,7 +62,7 @@ namespace SIL.FieldWorks.Build.Tasks
 		/// Gets or sets the Platform win32 or win64/x64.
 		/// </summary>
 		/// ------------------------------------------------------------------------------------
-		public string Platform { get; set; }
+		public string Platform { get; set; } = ProcessArchitecture;
 
 		/// ------------------------------------------------------------------------------------
 		/// <summary>
@@ -116,6 +107,8 @@ namespace SIL.FieldWorks.Build.Tasks
 		/// manifests.
 		/// </summary>
 		public ITaskItem[] DependentAssemblies { get; set; }
+
+		private static string ProcessArchitecture => Environment.Is64BitProcess ? x64 : x86;
 
 		private bool? m_IsAdmin;
 		private bool UserIsAdmin
