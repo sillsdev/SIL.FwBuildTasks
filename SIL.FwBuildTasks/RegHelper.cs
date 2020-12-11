@@ -14,7 +14,7 @@ using Microsoft.Win32;
 
 namespace SIL.FieldWorks.Build.Tasks
 {
-	public class RegHelper : IDisposable
+	internal sealed class RegHelper : IDisposable
 	{
 		private TaskLoggingHelper m_Log;
 		private bool RedirectRegistryFailed { get; set; }
@@ -45,15 +45,7 @@ namespace SIL.FieldWorks.Build.Tasks
 		/// each other.
 		/// </summary>
 		/// ------------------------------------------------------------------------------------
-		private static string TmpRegistryKey
-		{
-			get
-			{
-				return string.Format(@"Software\SIL\NAntBuild\tmp-{0}",
-					Process.GetCurrentProcess().Id);
-			}
-		}
-
+		private static string TmpRegistryKey => $@"Software\SIL\NAntBuild\tmp-{Process.GetCurrentProcess().Id}";
 
 		/// ------------------------------------------------------------------------------------
 		/// <summary>
@@ -74,7 +66,7 @@ namespace SIL.FieldWorks.Build.Tasks
 		/// <param name="fDisposing"><c>true</c> to release both managed and unmanaged
 		/// resources; <c>false</c> to release only unmanaged resources.</param>
 		/// ------------------------------------------------------------------------------------
-		public virtual void Dispose(bool fDisposing)
+		public void Dispose(bool fDisposing)
 		{
 			if (!IsDisposed)
 			{

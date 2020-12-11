@@ -19,3 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Create nuget packages
+
+### Fixed
+
+- `RegFree` task - don't fail if `Platform` is not specified. In this case just use the
+  bitness of the currently running process.
