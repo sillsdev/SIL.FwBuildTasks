@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>module</OutputType>
+    <TargetFrameworks>net462</TargetFrameworks>
+    <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
+    <Configurations>Debug;Release</Configurations>
+    <Description>Additional msbuild tasks for FieldWorks. Usually you won't need this package. Use it if you write tasks or classes that derive from FwBuildTasks.</Description>
+    <Company>SIL International</Company>
+    <Authors>SIL International</Authors>
+    <Product>FieldWorks</Product>
+    <Copyright>Copyright © 2010-2020 SIL International</Copyright>
+    <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <OutputPath>../artifacts/$(Configuration)</OutputPath>
+    <PackageOutputPath>../artifacts/</PackageOutputPath>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../SIL.FwBuildTasks.snk</AssemblyOriginatorKeyFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AppendToReleaseNotesProperty><![CDATA[
+See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHANGELOG.md]]>
+    </AppendToReleaseNotesProperty>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <ChangelogFile>../CHANGELOG.md</ChangelogFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.5.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="SIL.ReleaseTasks" Version="2.3.4" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SIL.FwBuildTasks\SIL.FwBuildTasks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../artifacts/$(Configuration)/net462/SIL.FwBuildTasks.dll">
+      <Pack>true</Pack>
+      <PackagePath>lib/net462</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
