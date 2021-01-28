@@ -27,3 +27,4 @@ _user.mak.lnx
 .project
 *.VC.db
 *.VC.opendb
+TestResult.xml
