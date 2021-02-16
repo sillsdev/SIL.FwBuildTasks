@@ -8,7 +8,7 @@
     <Company>SIL International</Company>
     <Authors>SIL International</Authors>
     <Product>FieldWorks</Product>
-    <Copyright>Copyright © 2010-2020 SIL International</Copyright>
+    <Copyright>Copyright © 2010-2021 SIL International</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -30,6 +30,7 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
 
   <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="5.5.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.8.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="SIL.ReleaseTasks" Version="2.4.0" PrivateAssets="All" />
     <PackageReference Include="SIL.TestUtilities" Version="8.0.0-beta0264" />

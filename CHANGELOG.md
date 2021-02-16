@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Create nuget packages
 - Projects that require access to the classes defined in FwBuildTasks should import the
   `SIL.FwBuildTasks.Lib` nuget package, all others `SIL.FwBuildTasks`.
+- Build for Netstandard 2.0
+
 
 ### Fixed
 
