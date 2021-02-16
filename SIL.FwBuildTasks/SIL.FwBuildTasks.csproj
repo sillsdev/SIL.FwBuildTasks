@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
     <Configurations>Debug;Release</Configurations>
     <Description>Additional msbuild tasks for FieldWorks</Description>
     <Company>SIL International</Company>
     <Authors>SIL International</Authors>
     <Product>FieldWorks</Product>
-    <Copyright>Copyright © 2010-2020 SIL International</Copyright>
+    <Copyright>Copyright © 2010-2021 SIL International</Copyright>
     <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -29,11 +29,10 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.5.1" PrivateAssets="All" />
+    <PackageReference Include="GitVersion.MsBuild" Version="5.6.6" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="SIL.ReleaseTasks" Version="2.4.0" PrivateAssets="All" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Windows.Forms" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

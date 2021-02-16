@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
-using System.Windows.Forms;
 using System.Xml;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;

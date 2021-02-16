@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Runtime.Remoting.Contexts;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
