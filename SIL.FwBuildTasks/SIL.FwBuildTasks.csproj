@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461</TargetFrameworks>
     <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
     <Configurations>Debug;Release</Configurations>
     <Description>Additional msbuild tasks for FieldWorks</Description>
     <Company>SIL International</Company>
     <Authors>SIL International</Authors>
     <Product>FieldWorks</Product>
-    <Copyright>Copyright © 2010-2021 SIL International</Copyright>
+    <Copyright>Copyright © 2010-2022 SIL International</Copyright>
     <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -33,6 +33,7 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="SIL.ReleaseTasks" Version="2.5.0" PrivateAssets="All" />
     <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
+    <Reference Include="System.IO.Compression" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +47,7 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
     </None>
     <None Include="nugetAssets\_._">
       <Pack>true</Pack>
-      <PackagePath>lib/net462</PackagePath>
+      <PackagePath>lib/net461</PackagePath>
     </None>
   </ItemGroup>
 

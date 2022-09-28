@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>module</OutputType>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461</TargetFrameworks>
     <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
     <Configurations>Debug;Release</Configurations>
     <Description>Additional msbuild tasks for FieldWorks. Usually you won't need this package. Use it if you write tasks or classes that derive from FwBuildTasks.</Description>
     <Company>SIL International</Company>
     <Authors>SIL International</Authors>
     <Product>FieldWorks</Product>
-    <Copyright>Copyright © 2010-2021 SIL International</Copyright>
+    <Copyright>Copyright © 2010-2022 SIL International</Copyright>
     <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -39,9 +39,9 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../artifacts/$(Configuration)/net462/SIL.FwBuildTasks.dll">
+    <None Include="../artifacts/$(Configuration)/net461/SIL.FwBuildTasks.dll">
       <Pack>true</Pack>
-      <PackagePath>lib/net462</PackagePath>
+      <PackagePath>lib/net461</PackagePath>
     </None>
   </ItemGroup>
 </Project>
