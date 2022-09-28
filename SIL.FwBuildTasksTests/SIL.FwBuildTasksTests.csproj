@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462</TargetFrameworks>
+    <TargetFrameworks>net461</TargetFrameworks>
     <RootNamespace>SIL.FieldWorks.Build.Tasks</RootNamespace>
     <Configurations>Debug;Release</Configurations>
     <Description>FwBuildTasksTests</Description>
     <Company>SIL International</Company>
     <Authors>SIL International</Authors>
     <Product>FieldWorks</Product>
-    <Copyright>Copyright © 2010-2021 SIL International</Copyright>
+    <Copyright>Copyright © 2010-2022 SIL International</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sillsdev/SIL.FwBuildTasks</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

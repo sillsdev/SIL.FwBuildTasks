@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Build for .Net Framework v4.6.1
+
 ## [10.0.0] - 2021-03-05
 
 ### Changed
