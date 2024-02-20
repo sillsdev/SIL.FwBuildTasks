@@ -30,7 +30,7 @@ See full changelog at https://github.com/sillsdev/SIL.FwBuildTasks/blob/main/CHA
 
   <ItemGroup>
     <PackageReference Include="GitVersion.MsBuild" Version="5.12.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="SIL.ReleaseTasks" Version="2.5.0" PrivateAssets="All" />
     <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
     <Reference Include="System.IO.Compression" />
